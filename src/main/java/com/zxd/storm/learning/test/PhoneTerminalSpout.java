@@ -76,7 +76,9 @@ public class PhoneTerminalSpout extends BaseRichSpout {
 		String ss = "{'name':'Hello #{name} #{value}','value':'#{{name}}'}";
 		Matcher matcher = pattern.matcher(ss);
 		while (matcher.find()){
-			System.out.println(matcher.group());
+			String matchStr = matcher.group();
+			System.out.println(matchStr);
+			System.out.println(matchStr.substring(2,matchStr.length()-1));
 			int i = matcher.groupCount();
 			System.out.println("========="+i);
 		}
