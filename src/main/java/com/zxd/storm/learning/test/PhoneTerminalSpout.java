@@ -2,6 +2,8 @@ package com.zxd.storm.learning.test;
 
 import java.util.Map;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.storm.spout.SpoutOutputCollector;
 import org.apache.storm.task.TopologyContext;
@@ -63,6 +65,21 @@ public class PhoneTerminalSpout extends BaseRichSpout {
 
 		declarer.declare(new Fields("phone-name"));
 
+	}
+
+	/**
+	 * test pattern
+	 * @param args
+	 */
+	public static void main(String[] args){
+		Pattern pattern = Pattern.compile("#\\{[^{}]+\\}");
+		String ss = "{'name':'Hello #{name} #{value}','value':'#{{name}}'}";
+		Matcher matcher = pattern.matcher(ss);
+		while (matcher.find()){
+			System.out.println(matcher.group());
+			int i = matcher.groupCount();
+			System.out.println("========="+i);
+		}
 	}
 
 }
